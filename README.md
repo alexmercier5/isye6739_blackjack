@@ -16,6 +16,15 @@ Make a virtual environment:
 ```
 py -m venv .env
 ```
+Activate your virtual environment:
+    Windows:
+    ```
+    .env/scripts/activate
+    ```
+    Mac OS: 
+    ```
+    source .env/bin/activate
+    ```
 Install the necessary packages:
 ```
 pip install -r requirements.txt
