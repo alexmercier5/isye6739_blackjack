@@ -17,6 +17,7 @@ Make a virtual environment:
 py -m venv .env
 ```
 Activate your virtual environment depending on OS
+
 Windows:
 ```
 .env/scripts/activate
