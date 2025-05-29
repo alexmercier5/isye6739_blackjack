@@ -1,5 +1,110 @@
-Dealer Hand,Dealer Hand Value,Player Hand,Player Hand Value,Strategy
-"4 of Hearts, 2 of Diamonds",6,"9 of Spades, 5 of Spades, 5 of Diamonds",19,standard
-"4 of Diamonds, King of Diamonds",14,"Ace of Diamonds, Ace of Hearts, Ace of Spades, 3 of Clubs",16,standard
-"2 of Diamonds, Queen of Diamonds",12,"King of Spades, 8 of Hearts",18,standard
-"Queen of Hearts, 5 of Hearts",15,"Jack of Spades, 3 of Spades, 2 of Diamonds, Queen of Spades",25,standard
+Dealer Hand,Dealer Hand Value,Player Hand,Player Hand Value,Split Hand,Split Hand Value,Strategy
+"Jack of Spades, 3 of Hearts",13,"6 of Hearts, 10 of Clubs",16,,,standard
+"9 of Clubs, 4 of Hearts",13,10 of Hearts,10,,,standard
+"6 of Diamonds, 3 of Clubs",9,5 of Hearts,5,,,standard
+"2 of Spades, 7 of Clubs",9,"5 of Clubs, 4 of Spades, 5 of Clubs, 10 of Clubs",24,,,standard
+"6 of Clubs, 10 of Hearts",16,"Jack of Spades, 8 of Diamonds",18,,,standard
+"Ace of Spades, 10 of Clubs",21,9 of Hearts,9,,,standard
+"8 of Hearts, 2 of Spades",10,"9 of Hearts, Jack of Hearts",19,,,standard
+"2 of Clubs, Queen of Clubs",12,"Ace of Diamonds, 6 of Clubs",17,,,standard
+"8 of Diamonds, Queen of Clubs",18,"Ace of Clubs, Queen of Spades",21,,,standard
+"2 of Hearts, Queen of Diamonds",12,"4 of Clubs, Ace of Hearts",15,,,standard
+"2 of Diamonds, 6 of Spades",8,"4 of Spades, 5 of Hearts",9,,,standard
+"7 of Clubs, Queen of Clubs",17,"4 of Spades, King of Clubs",14,,,standard
+"4 of Diamonds, 2 of Spades",6,"5 of Clubs, 4 of Diamonds",9,,,standard
+"King of Spades, Jack of Clubs",20,"3 of Hearts, 10 of Clubs",13,,,standard
+"8 of Clubs, 10 of Clubs",18,"3 of Hearts, 6 of Clubs",9,,,standard
+"5 of Diamonds, Jack of Hearts",15,"Queen of Clubs, 3 of Diamonds",13,,,standard
+"10 of Clubs, 6 of Spades",16,"3 of Spades, Ace of Clubs, 6 of Diamonds",20,,,standard
+"Jack of Hearts, Jack of Diamonds",20,"10 of Diamonds, Ace of Spades",21,,,standard
+"5 of Diamonds, Jack of Spades",15,"7 of Spades, 4 of Spades",11,,,standard
+"10 of Clubs, 3 of Spades",13,"5 of Hearts, Jack of Clubs",15,,,standard
+"8 of Diamonds, 10 of Hearts",18,"6 of Diamonds, 8 of Hearts",14,,,standard
+"Jack of Spades, Queen of Diamonds",20,"2 of Spades, 5 of Clubs",7,,,standard
+"5 of Spades, Jack of Spades",15,"9 of Clubs, 5 of Diamonds",14,,,standard
+"King of Hearts, 7 of Clubs",17,"9 of Hearts, 8 of Hearts",17,,,standard
+"2 of Spades, 10 of Hearts",12,"3 of Spades, 4 of Diamonds",7,,,standard
+"9 of Spades, 6 of Diamonds",15,"King of Diamonds, 5 of Diamonds",15,,,standard
+"4 of Diamonds, 8 of Spades",12,"7 of Clubs, 10 of Spades",17,,,standard
+"King of Clubs, 9 of Clubs",19,"10 of Spades, 7 of Clubs",17,,,standard
+"Queen of Clubs, Queen of Hearts",20,"King of Hearts, 3 of Clubs",13,,,standard
+"10 of Spades, 2 of Diamonds",12,"7 of Hearts, 6 of Hearts",13,,,standard
+"4 of Clubs, 5 of Spades",9,"7 of Spades, 4 of Clubs",11,,,standard
+"6 of Clubs, King of Clubs",16,"8 of Hearts, Jack of Spades, 4 of Spades",22,,,standard
+"King of Hearts, 4 of Spades",14,"3 of Hearts, 5 of Clubs",8,,,standard
+"8 of Spades, 3 of Spades",11,"5 of Clubs, 10 of Hearts, Queen of Hearts",25,,,standard
+"7 of Spades, 5 of Diamonds",12,"4 of Spades, 6 of Spades, 10 of Clubs, 3 of Spades",23,,,standard
+"9 of Clubs, 6 of Hearts",15,"Jack of Hearts, 5 of Diamonds, 2 of Hearts, 7 of Diamonds, Ace of Diamonds",25,,,standard
+"10 of Hearts, Ace of Clubs",21,"Jack of Diamonds, 2 of Spades, 3 of Diamonds, Ace of Spades, 5 of Diamonds",21,,,standard
+"8 of Spades, 2 of Hearts",10,"Queen of Hearts, 10 of Hearts, 9 of Hearts",29,,,standard
+"10 of Spades, 3 of Spades",13,"10 of Hearts, Queen of Diamonds, 10 of Spades",30,,,standard
+"8 of Hearts, Ace of Spades",19,"9 of Spades, 7 of Hearts, Queen of Spades",26,,,standard
+"Queen of Clubs, Queen of Clubs",20,"9 of Hearts, 6 of Clubs, 9 of Spades",24,,,standard
+"3 of Diamonds, Jack of Spades",13,"6 of Diamonds, Queen of Spades, Queen of Hearts, Ace of Hearts",27,,,standard
+"Queen of Clubs, 7 of Diamonds",17,"Jack of Diamonds, Ace of Spades",21,,,standard
+"Ace of Spades, Ace of Diamonds",12,"8 of Hearts, 5 of Spades, 5 of Diamonds, 9 of Hearts",27,,,standard
+"3 of Diamonds, 6 of Spades",9,"3 of Hearts, Jack of Hearts, 3 of Diamonds, 6 of Hearts",22,,,standard
+"5 of Clubs, 10 of Hearts",15,"8 of Clubs, 6 of Diamonds, Queen of Diamonds",24,,,standard
+"9 of Spades, 2 of Hearts",11,"9 of Diamonds, 7 of Spades, King of Hearts",26,,,standard
+"7 of Diamonds, Ace of Clubs",18,"7 of Hearts, 9 of Spades, 9 of Hearts",25,,,standard
+"Jack of Diamonds, Queen of Diamonds",20,"2 of Diamonds, Jack of Spades, 5 of Spades, King of Clubs",27,,,standard
+"9 of Clubs, 3 of Hearts",12,"4 of Spades, Jack of Clubs, 7 of Diamonds",21,,,standard
+"Ace of Hearts, 3 of Spades",14,"9 of Hearts, 7 of Spades, 2 of Clubs, Jack of Diamonds",28,,,standard
+"2 of Diamonds, 10 of Spades",12,"7 of Diamonds, 8 of Diamonds, Ace of Diamonds, 2 of Clubs, 3 of Hearts",21,,,standard
+"8 of Spades, 10 of Clubs",18,"7 of Spades, King of Clubs, Jack of Spades",27,,,standard
+"9 of Clubs, Queen of Diamonds",19,"9 of Hearts, King of Clubs, 9 of Spades",28,,,standard
+"6 of Diamonds, Ace of Diamonds",17,"2 of Hearts, 7 of Clubs, 3 of Diamonds, 7 of Spades, 5 of Hearts",24,,,standard
+"6 of Spades, 8 of Clubs",14,"Queen of Diamonds, Ace of Spades",21,,,standard
+"Jack of Hearts, 9 of Spades",19,"6 of Clubs, 3 of Spades, 8 of Spades, 4 of Spades",21,,,standard
+"3 of Spades, Jack of Diamonds",13,"8 of Hearts, 5 of Diamonds, 9 of Clubs",22,,,standard
+"3 of Spades, 8 of Clubs",11,"4 of Diamonds, 3 of Hearts, Jack of Spades, 10 of Hearts, Ace of Hearts",28,,,standard
+"9 of Hearts, 10 of Hearts",19,"King of Diamonds, Ace of Spades",21,,,standard
+"5 of Hearts, 5 of Clubs",10,"7 of Diamonds, 5 of Diamonds, 7 of Diamonds, 9 of Diamonds",28,,,standard
+"5 of Diamonds, 3 of Hearts",8,"2 of Diamonds, Queen of Diamonds, King of Spades",22,,,standard
+"8 of Spades, 5 of Clubs",13,"2 of Hearts, 8 of Hearts, 7 of Clubs, 2 of Diamonds, King of Hearts",29,,,standard
+"King of Hearts, 2 of Hearts",12,"2 of Spades, 5 of Spades, 5 of Hearts, Ace of Spades, 8 of Hearts",21,,,standard
+"8 of Clubs, Jack of Clubs",18,9 of Clubs,9,"9 of Clubs, 9 of Clubs, 9 of Clubs",27,standard
+"Jack of Diamonds, 10 of Spades",20,"3 of Hearts, Queen of Spades, 5 of Hearts, Queen of Clubs, Ace of Spades",29,,,standard
+"King of Clubs, Ace of Hearts",21,"5 of Hearts, 2 of Hearts, Jack of Hearts, 9 of Spades, Ace of Diamonds",27,,,standard
+"10 of Clubs, 7 of Clubs",17,"3 of Clubs, King of Clubs, King of Hearts",23,,,standard
+"3 of Diamonds, 6 of Clubs",9,"Jack of Clubs, Ace of Hearts",21,,,standard
+"6 of Spades, 7 of Spades",13,"6 of Hearts, 2 of Diamonds, 10 of Hearts, 5 of Diamonds",23,,,standard
+"6 of Diamonds, 5 of Hearts",11,"5 of Diamonds, Ace of Spades, Ace of Diamonds, 4 of Clubs",21,,,standard
+"8 of Clubs, 9 of Clubs",17,"4 of Diamonds, 6 of Spades, 5 of Hearts, 6 of Diamonds",21,,,standard
+"3 of Spades, 10 of Diamonds",13,"King of Hearts, 8 of Spades, 8 of Hearts",26,,,standard
+"10 of Spades, Queen of Clubs",20,"7 of Clubs, 2 of Clubs, Jack of Hearts, King of Spades, Ace of Hearts",30,,,standard
+"Queen of Spades, 9 of Hearts",19,"10 of Clubs, Queen of Hearts, 4 of Clubs",24,,,standard
+"6 of Diamonds, 3 of Clubs",9,"6 of Spades, 8 of Spades, Ace of Spades, Ace of Clubs",26,,,standard
+"King of Diamonds, Jack of Spades",20,"7 of Diamonds, 3 of Hearts, 5 of Hearts, Ace of Spades, Ace of Diamonds",27,,,standard
+"2 of Hearts, Jack of Spades",12,"9 of Clubs, 10 of Clubs, 6 of Spades, Ace of Spades",26,,,standard
+"8 of Hearts, 9 of Spades",17,"4 of Spades, 10 of Clubs, Ace of Hearts, 9 of Hearts, Ace of Diamonds",25,,,standard
+"9 of Hearts, 10 of Hearts",19,"3 of Diamonds, 7 of Diamonds, 10 of Clubs, 3 of Hearts",23,,,standard
+"2 of Diamonds, 2 of Clubs",4,"5 of Clubs, 8 of Clubs, 7 of Clubs, 7 of Clubs",27,,,standard
+"2 of Clubs, 3 of Clubs",5,"5 of Hearts, 4 of Spades, 7 of Diamonds, 2 of Diamonds, 4 of Spades",22,,,standard
+"9 of Clubs, 4 of Diamonds",13,"6 of Clubs, 3 of Clubs, 3 of Hearts, 9 of Diamonds",21,,,standard
+"8 of Spades, Jack of Hearts",18,"10 of Hearts, 3 of Spades, 4 of Spades, 6 of Diamonds",23,,,standard
+"5 of Clubs, 9 of Clubs",14,"9 of Clubs, King of Clubs, 6 of Diamonds",25,,,standard
+"2 of Spades, 7 of Hearts",9,"4 of Clubs, 6 of Diamonds, 9 of Diamonds, 5 of Hearts",24,,,standard
+"Ace of Clubs, 4 of Hearts",15,"10 of Spades, 3 of Hearts, Queen of Hearts, Ace of Hearts",24,,,standard
+"6 of Spades, 8 of Diamonds",14,"4 of Diamonds, 3 of Clubs, 10 of Hearts, 9 of Spades, Ace of Hearts",27,,,standard
+"6 of Spades, 10 of Spades",16,"Queen of Diamonds, 10 of Spades, 3 of Spades",23,,,standard
+"9 of Spades, Ace of Spades",20,"10 of Hearts, 2 of Spades, 7 of Clubs, 10 of Spades",29,,,standard
+"5 of Spades, Queen of Diamonds",15,"Jack of Clubs, 4 of Diamonds, 9 of Diamonds",23,,,standard
+"2 of Clubs, 7 of Spades",9,"King of Clubs, 7 of Hearts, Jack of Hearts",27,,,standard
+"Jack of Spades, Ace of Diamonds",21,"9 of Diamonds, 2 of Hearts, 7 of Spades, 6 of Spades",24,,,standard
+"9 of Hearts, 9 of Clubs",18,"4 of Diamonds, 2 of Spades, Jack of Hearts, 6 of Hearts",22,,,standard
+"8 of Spades, 4 of Hearts",12,"5 of Diamonds, Ace of Clubs, 5 of Hearts",21,,,standard
+"10 of Clubs, 10 of Hearts",20,"9 of Diamonds, Queen of Clubs, Queen of Spades",29,,,standard
+"10 of Spades, 9 of Diamonds",19,"10 of Diamonds, 4 of Diamonds, Jack of Hearts",24,,,standard
+"7 of Spades, 3 of Clubs",10,"10 of Hearts, 5 of Hearts, 2 of Spades, 2 of Hearts, 6 of Diamonds",25,,,standard
+"8 of Hearts, 9 of Clubs",17,"Queen of Diamonds, 7 of Clubs, Jack of Hearts",27,,,standard
+"6 of Hearts, 10 of Clubs",16,"King of Hearts, 9 of Diamonds, Queen of Clubs",29,,,standard
+"4 of Diamonds, 7 of Hearts",11,"9 of Hearts, 4 of Spades, 7 of Hearts, Jack of Spades",30,,,standard
+"5 of Spades, 2 of Diamonds",7,"6 of Diamonds, 6 of Spades, 5 of Clubs",17,"6 of Hearts, 9 of Spades",15,standard
+"Ace of Clubs, 2 of Spades, 7 of Diamonds",20,"6 of Diamonds, 3 of Hearts, 6 of Spades",15,,,standard
+"9 of Diamonds, 7 of Diamonds, Queen of Diamonds",26,King of Hearts,10,,,standard
+"King of Diamonds, King of Clubs",20,Queen of Hearts,10,,,standard
+"5 of Spades, Queen of Diamonds, Queen of Spades, Ace of Spades",26,9 of Clubs,9,,,standard
+"8 of Spades, 5 of Hearts, 8 of Diamonds",21,3 of Diamonds,3,,,standard
+"King of Hearts, 6 of Diamonds, 2 of Clubs",18,3 of Hearts,3,,,standard
+"9 of Clubs, Jack of Diamonds",19,6 of Diamonds,6,,,standard
