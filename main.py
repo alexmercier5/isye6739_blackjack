@@ -79,27 +79,27 @@ def dealer_hand(hand, deck, ifBusted=False):
                     hand.remove(each_card)
                     hand.append(('Ace', each_card[1], 1))
                     break
-        for i, each_card in enumerate(deck):
-            if each_card[0] == card[0] and each_card[1] == card[1]:
-                del deck[i]
-                break
+        # for i, each_card in enumerate(deck):
+        #     if each_card[0] == card[0] and each_card[1] == card[1]:
+        #         del deck[i]
+        #         break
         print(f"Dealer dealt: xxx of xxx (Hidden)")
     else:
         if len(hand) == 1:
             card = deck.pop()
             hand.append(card)
             print(f"Dealer dealt: {card[0]} of {card[1]}")
-            for i, each_card in enumerate(deck):
-                if each_card[0] == card[0] and each_card[1] == card[1]:
-                    del deck[i]
-                    break
+            # for i, each_card in enumerate(deck):
+            #     if each_card[0] == card[0] and each_card[1] == card[1]:
+            #         del deck[i]
+            #         break
         else:
             if ifBusted:
                 pass
             else:
                 for card in hand:
                     print(f"Dealer's hand: {card[0]} of {card[1]}")
-                while sum(card[2] for card in hand) <= 16:
+                while sum(dcard[2] for dcard in hand) <= 16:
                     card = deck.pop()
                     hand.append(card)
                     print(f"Dealer hits and is dealt: {card[0]} of {card[1]}")
@@ -109,6 +109,10 @@ def dealer_hand(hand, deck, ifBusted=False):
                                 hand.remove(each_card)
                                 hand.append(('Ace', each_card[1], 1))
                                 break
+                    # for i, each_card in enumerate(deck):
+                    #     if each_card[0] == card[0] and each_card[1] == card[1]:
+                    #         del deck[i]
+                    #         break
             print("Dealer stands.")
     return hand, deck
 
@@ -135,23 +139,23 @@ def player_hand(deck, bankroll):
     hand = []
     split_hand = []
     num_of_hands = 1
-    if len(hand) < 1:
+    if len(hand) == 0:
         card = deck.pop()
         hand.append(card)
         print(f"Player dealt: {card[0]} of {card[1]}")
-        for i, each_card in enumerate(deck):
-                    if each_card[0] == card[0] and each_card[1] == card[1]:
-                        del deck[i]
-                        break
+        # for i, each_card in enumerate(deck):
+        #             if each_card[0] == card[0] and each_card[1] == card[1]:
+        #                 del deck[i]
+        #                 break
         dealer_hand_1card, deck = dealer_hand(None, deck)
     if len(hand) == 1:
         card = deck.pop()
         hand.append(card)
         print(f"Player dealt: {card[0]} of {card[1]}")
-        for i, each_card in enumerate(deck):
-            if each_card[0] == card[0] and each_card[1] == card[1]:
-                del deck[i]
-                break
+        # for i, each_card in enumerate(deck):
+        #     if each_card[0] == card[0] and each_card[1] == card[1]:
+        #         del deck[i]
+        #         break
         dealer_hand_2card, deck = dealer_hand(dealer_hand_1card, deck)
     mainPlaying = True
     splitPlaying = False
@@ -209,37 +213,53 @@ def player_hand(deck, bankroll):
                     splitPlaying = False
                 print(f"{current_hand}: Player stands.")
             if indiv_hand == 0:
-                total_value = sum(card[2] for card in hand)
+                total_value = sum(maincard[2] for maincard in hand)
                 if total_value > 21:
-                    print(f"{current_hand}: Player busts!")
-                    busted = True
-                    mainPlaying = False
+                    for each_card in hand:
+                            if each_card[0] == 'Ace' and each_card[2] == 11:
+                                hand.remove(each_card)
+                                hand.append(('Ace', each_card[1], 1))
+                                total_value = sum(card[2] for card in hand)
+                                if total_value <= 21:
+                                    break
+                    else:
+                        print(f"{current_hand}: Player busts!")
+                        busted = True
+                        mainPlaying = False
                 elif total_value == 21:
                     print(f"{current_hand}: Player has blackjack!")
                     mainPlaying = False
                 else:
                     print(f"{current_hand} --- Total: {total_value}")
 
-                for i, each_card in enumerate(deck):
-                    if each_card[0] == card[0] and each_card[1] == card[1]:
-                        del deck[i]
-                        break
+                # for i, each_card in enumerate(deck):
+                #     if each_card[0] == card[0] and each_card[1] == card[1]:
+                #         del deck[i]
+                #         break
 
             if indiv_hand == 1:
-                total_value = sum(card[2] for card in split_hand)
+                total_value = sum(splitcard[2] for splitcard in split_hand)
                 if total_value > 21:
-                    print("{current_hand}: Player busts!")
-                    splitPlaying = False
+                    for each_card in hand:
+                            if each_card[0] == 'Ace' and each_card[2] == 11:
+                                hand.remove(each_card)
+                                hand.append(('Ace', each_card[1], 1))
+                                total_value = sum(card[2] for card in split_hand)
+                                if total_value <= 21:
+                                    break
+                    else:
+                        print("{current_hand}: Player busts!")
+                        splitPlaying = False
                 elif total_value == 21:
                     print("{current_hand}: Player has blackjack!")
                     splitPlaying = False
                 else:
                     print(f"{current_hand}: Player's total value: {total_value}")
 
-                for i, each_card in enumerate(deck):
-                    if each_card[0] == card[0] and each_card[1] == card[1]:
-                        del deck[i]
-                        break
+                # for i, each_card in enumerate(deck):
+                #     if each_card[0] == card[0] and each_card[1] == card[1]:
+                #         del deck[i]
+                #         break
         if not mainPlaying and not splitPlaying:
             playerPlaying = False
         turn += 1
