@@ -116,16 +116,18 @@ def dealer_hand(hand, deck, ifBusted=False):
             print("Dealer stands.")
     return hand, deck
 
-def player_hand(deck, bankroll):
+def player_hand(deck, bankroll, strategy):
     """Deal a hand of cards to the player."""
     balance=bankroll
     print(f"Player's current balance: ${balance}\n")
-    print(f"Enter your bet amount (or type 'exit' to quit): ")
-    bet = input()
+    if strategy in ['strat1', 'strat2', 'strat3']:
+        print(f"Using strategy: {strategy}\n")
+        bet = 10
+        #bet = math.fabs(bankroll // 10)
+    else:
+        print(f"Enter your bet amount: ")
+        bet = input()
     bet2 = 0
-    if bet.lower() == 'exit':
-        print("Exiting the game.")
-        exit()
     try:
         bet = int(bet)
         if bet > balance:
@@ -174,12 +176,150 @@ def player_hand(deck, bankroll):
                 if not splitPlaying:
                     continue
                 total_value = sum(card[2] for card in split_hand)
-            print(f"\n\n{current_hand} --- Total: {total_value} \nHit or Stand? Type 'h' or enter to hit or type 's' to stand.\n")
-            if turn == 0:
-                print(f"Type 'double' or 'd' to double down.\n")
-            if card[2] == hand[0][2] and turn == 0:
-                print("\n\nPlayer has a pair! Type 'split' to split, else game continues\n")
-            input_choice = input()
+            if strategy not in ['strat1', 'strat2', 'strat3']:
+                print(f"\n\n{current_hand} --- Total: {total_value} \nHit or Stand? Type 'h' or enter to hit or type 's' to stand.\n")
+                if turn == 0:
+                    print(f"Type 'double' or 'd' to double down.\n")
+                if card[2] == hand[0][2] and turn == 0:
+                    print("\n\nPlayer has a pair! Type 'split' to split, else game continues\n")
+                input_choice = input()
+            elif strategy == "strat1":
+                #Strats: https://www.888casino.com/blog/blackjack-strategy/best-blackjack-strategies
+                #Strategy for always double down on a hard 11
+                isAce = any(card[0] == 'Ace' for card in hand)
+                isAceDealer = any(card[0] == 'Ace' for card in dealer_hand_2card)
+
+                if turn == 0:
+                    if total_value == 11 and not isAce:
+                        input_choice = 'double'
+                        if balance >= bet:
+                            balance -= bet
+                            bet *= 2
+                            card = deck.pop()
+                            hand.append(card)
+                            print(f"Player doubled down and is dealt: {card[0]} of {card[1]}")
+                            playerPlaying = False
+                            return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+                    elif total_value == 17 and isAce and isAceDealer:
+                        input_choice = 'h'
+                        card = deck.pop()
+                        hand.append(card)
+                        print(f"Player hits and is dealt: {card[0]} of {card[1]}")
+                        if sum(card[2] for card in hand) > 21:
+                            for each_card in hand:
+                                if each_card[0] == 'Ace':
+                                    hand.remove(each_card)
+                                    hand.append(('Ace', each_card[1], 1))
+                                    break
+                        return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
+                if total_value > 21:
+                    busted = True
+                    print("Player busts!")
+                else:
+                    for card in hand:
+                        print(f"Player's hand: {card[0]} of {card[1]}")
+                    while sum(dcard[2] for dcard in hand) <= 16:
+                        card = deck.pop()
+                        hand.append(card)
+                        print(f"Player hits and is dealt: {card[0]} of {card[1]}")
+                        if sum(card[2] for card in hand) > 21:
+                            for each_card in hand:
+                                if each_card[0] == 'Ace':
+                                    hand.remove(each_card)
+                                    hand.append(('Ace', each_card[1], 1))
+                                    break
+
+                return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
+            elif strategy == "strat2":
+                #strategy for always split a pair of 8s and aces
+                isAce = any(card[0] == 'Ace' for card in hand)
+
+                if turn == 0:
+                    if total_value == 16 and not isAce:
+                        input_choice = 'split'
+                        balance -= bet
+                        bet2 = bet
+                        print(f"Player splits the hand. New bet is ${bet} and ${bet2}.")
+                        splitPlaying = True
+                        num_of_hands += 1
+                        split_hand.append(card)
+                        hand.remove(card)
+                        return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+                    elif total_value == 18 and isAce:
+                        input_choice = 'split'
+                        balance -= bet
+                        bet2 = bet
+                        print(f"Player splits the hand. New bet is ${bet} and ${bet2}.")
+                        splitPlaying = True
+                        num_of_hands += 1
+                        split_hand.append(card)
+                        hand.remove(card)
+                        return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
+                if total_value > 21:
+                    print("Player busts!")
+                    busted = True
+                else:
+                    for card in hand:
+                        print(f"Player's hand: {card[0]} of {card[1]}")
+                    while sum(dcard[2] for dcard in hand) <= 16:
+                        card = deck.pop()
+                        hand.append(card)
+                        print(f"Player hits and is dealt: {card[0]} of {card[1]}")
+                        if sum(card[2] for card in hand) > 21:
+                            for each_card in hand:
+                                if each_card[0] == 'Ace':
+                                    hand.remove(each_card)
+                                    hand.append(('Ace', each_card[1], 1))
+                                    break
+
+                return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
+            elif strategy == "strat3":
+                # Strategy for never splitting a pair of 5s or tens
+                isAce = any(card[0] == 'Ace' for card in hand)
+
+                if turn == 0:
+                    if total_value == 10 and not isAce:
+                        input_choice = 'h'
+                        card = deck.pop()
+                        hand.append(card)
+                        print(f"Player hits and is dealt: {card[0]} of {card[1]}")
+                        if sum(card[2] for card in hand) > 21:
+                            for each_card in hand:
+                                if each_card[0] == 'Ace':
+                                    hand.remove(each_card)
+                                    hand.append(('Ace', each_card[1], 1))
+                                    break
+                        return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
+                    elif total_value == 20 and not isAce:
+                        input_choice = 's'
+                        # No action needed (player stands)
+                        return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
+                # Now handle the "big else" for all other cases
+                if total_value > 21:
+                    busted = True
+                    print("Player busts!")
+                else:
+                    for card in hand:
+                        print(f"Player's hand: {card[0]} of {card[1]}")
+                    while sum(card[2] for card in hand) <= 16:
+                        card = deck.pop()
+                        hand.append(card)
+                        print(f"Player hits and is dealt: {card[0]} of {card[1]}")
+                        if sum(card[2] for card in hand) > 21:
+                            for each_card in hand:
+                                if each_card[0] == 'Ace':
+                                    hand.remove(each_card)
+                                    hand.append(('Ace', each_card[1], 1))
+                                    break
+
+                return hand, split_hand, deck, dealer_hand_2card, bet, bet2, balance, busted
+
             if input_choice.lower() == 'h' or input_choice == '':
                 print(f"Player hits.\n")
                 card = deck.pop()
@@ -284,6 +424,10 @@ def compare_hands(dealer_hand, player_hand, split_hand, bet, bet2, balance):
         print("Player wins!\n")
         profit = bet * 2
         balance += profit
+    elif player_total > 21 and dealer_total > 21:
+        print("It's a tie!\n")
+        profit = 0
+        balance += bet
     elif player_total > 21:
         print("Dealer wins!\n")
         profit = -bet
@@ -312,6 +456,10 @@ def compare_hands(dealer_hand, player_hand, split_hand, bet, bet2, balance):
             print("Player's split hand wins!\n\n")
             profit += bet2 * 2
             balance += bet2 * 2
+        elif split_total > 21 and dealer_total > 21:
+            print("It's a tie!\n")
+            profit = 0
+            balance += bet
         elif split_total > 21:
             print("Dealer beats split hand!\n\n")
             profit -= bet2
@@ -332,9 +480,10 @@ def compare_hands(dealer_hand, player_hand, split_hand, bet, bet2, balance):
     return profit, balance, revenue
 
 def choose_strategy(deck):
+
     return "standard"
 
-def save_results(dealers_hand, players_hand, split_hand, strategy, profit, balance, revenue):
+def save_results(dealers_hand, players_hand, split_hand, strategy, profit, balance, revenue, runs):
     dealer_total = sum(card[2] for card in dealers_hand)
     player_total = sum(card[2] for card in players_hand)
     if split_hand:
@@ -359,21 +508,45 @@ def save_results(dealers_hand, players_hand, split_hand, strategy, profit, balan
         'Strategy': strategy
     }
     result_df = pd.DataFrame([result_row])
-    file_exists = os.path.isfile("results.csv")
-    result_df.to_csv("results.csv", mode='a', index=False, header=not file_exists)
+    file_exists = os.path.isfile(f"results_{strategy}.csv")
+    result_df.to_csv(f"results_{strategy}_{runs}runs.csv", mode='a', index=False, header=not file_exists)
 
     return None
 
 if __name__ == "__main__":
+    strategy = input("Choose a strategy (strat1, strat2, strat3) or enter to play yourself: ").strip().lower()
+    if strategy in ['strat1', 'strat2', 'strat3']:
+        runs = int(input("Enter the number of runs for the strategy: "))
+        run = 0
+    else: 
+        runs = 1
     balance = int(input("Enter your starting bankroll: "))
     deck = None
-    while True:
-        deck, balance = setup(bankroll=balance, deck=deck)
-        shuffled_deck = shuffle_deck(deck)
-        players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance)
-        dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
-        profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
-        save_results(dealers_hand, players_hand, split_hand, choose_strategy(final_deck), profit, balance, revenue)
-        if balance <= 0:
-            print("You have run out of money! Game over.")
-            break
+    if strategy not in ['strat1', 'strat2', 'strat3']:
+        while True:
+            deck, balance = setup(bankroll=balance, deck=deck)
+            shuffled_deck = shuffle_deck(deck)
+            players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance)
+            dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
+            profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
+            save_results(dealers_hand, players_hand, split_hand, 'user', profit, balance, revenue, runs)
+            if balance <= 0:
+                print("You have run out of money! Game over.")
+                break
+
+    else:
+        while run < runs:
+            run += 1
+            deck, balance = setup(bankroll=balance, deck=deck)
+            shuffled_deck = shuffle_deck(deck)
+            #strat = choose_strategy(strategy)
+            players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance, strategy)
+            dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
+            profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
+            save_results(dealers_hand, players_hand, split_hand, strategy, profit, balance, revenue, runs)
+            if balance <= 0:
+                print("You have run out of money! Game over.")
+                break
+            if len(deck) < 52:
+                print("Deck is running low, reshuffling...")
+                deck = None
