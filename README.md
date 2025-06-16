@@ -1,3 +1,7 @@
+Work on this project was done by Alex Mercier and Katie Bush. 
+
+The use of AI (ChatGPT) for certain syntax and specific debugging was used to help improve the code performance. All ideas and construction of the code itself were that of the above authors. Additionally links to websites used in creation of documented blackjack strategies are included within the code where applicable. 
+
 Set up the project using the following steps.
 
 Copy this link:
@@ -35,5 +39,3 @@ Run the script:
 py -m main
 ```
 Evaluate outputs by navigating to results.csv. 
-
-TODO: Develop a method to implement specific strategies, also allow for running DoE's based on the strategies so user does not have to play each game. 
