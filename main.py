@@ -132,10 +132,10 @@ def player_hand(deck, bankroll, strategy):
         bet = int(bet)
         if bet > balance:
             print(f"Insufficient balance. Your current balance is ${balance}.")
-            return player_hand(deck, balance)
+            return
     except ValueError:
         print("Invalid bet amount. Please enter a valid number.")
-        return player_hand(deck, balance)
+        return
     balance -= bet
     print(f"Player's bet: ${bet}\n")
     hand = []
@@ -509,7 +509,7 @@ def save_results(dealers_hand, players_hand, split_hand, strategy, profit, balan
     }
     result_df = pd.DataFrame([result_row])
     file_exists = os.path.isfile(f"results_{strategy}.csv")
-    result_df.to_csv(f"results_{strategy}_{runs}runs.csv", mode='a', index=False, header=not file_exists)
+    result_df.to_csv(f"total_results_{strategy}_{runs}runs.csv", mode='a', index=False, header=not file_exists)
 
     return None
 
@@ -524,29 +524,45 @@ if __name__ == "__main__":
     deck = None
     if strategy not in ['strat1', 'strat2', 'strat3']:
         while True:
-            deck, balance = setup(bankroll=balance, deck=deck)
-            shuffled_deck = shuffle_deck(deck)
-            players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance)
-            dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
-            profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
-            save_results(dealers_hand, players_hand, split_hand, 'user', profit, balance, revenue, runs)
-            if balance <= 0:
+            try:
+                deck, balance = setup(bankroll=balance, deck=deck)
+                shuffled_deck = shuffle_deck(deck)
+                players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance)
+                dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
+                profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
+                save_results(dealers_hand, players_hand, split_hand, 'user', profit, balance, revenue, runs)
+                if balance <= 0:
+                    print("You have run out of money! Game over.")
+                    break
+
+            except Exception as e:
                 print("You have run out of money! Game over.")
                 break
 
     else:
-        while run < runs:
-            run += 1
-            deck, balance = setup(bankroll=balance, deck=deck)
-            shuffled_deck = shuffle_deck(deck)
-            #strat = choose_strategy(strategy)
-            players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance, strategy)
-            dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
-            profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
-            save_results(dealers_hand, players_hand, split_hand, strategy, profit, balance, revenue, runs)
-            if balance <= 0:
-                print("You have run out of money! Game over.")
-                break
-            if len(deck) < 52:
-                print("Deck is running low, reshuffling...")
-                deck = None
+        balance_init = balance
+        deck = None
+        for i in range(50):
+            print(f"SIMULATION: \n\n\n\n\n{i}\n\n\n\n")
+            run = 0
+            balance = balance_init
+            while run < runs:
+                try:
+                    strategy = strategy
+                    run += 1
+                    deck, balance = setup(bankroll=balance, deck=deck)
+                    shuffled_deck = shuffle_deck(deck)
+                    #strat = choose_strategy(strategy)
+                    players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance, strategy)
+                    dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
+                    profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
+                    save_results(dealers_hand, players_hand, split_hand, strategy, profit, balance, revenue, runs)
+                    if balance <= 0:
+                        print("You have run out of money! Game over.")
+                        break
+                    if len(deck) < 52:
+                        print("Deck is running low, reshuffling...")
+                        deck = None
+                except Exception as e:
+                    print(f"Error during simulation {i}, run {run}: {e}")
+                    break  # exit current 'while run < runs', go to next i
