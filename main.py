@@ -5,25 +5,6 @@ import csv
 import os
 
 
-#TODO: ADD BETTING SYSTEMS
-'''
-Even Money Wins:
-If you beat the dealer's hand (having a higher value without exceeding 21), you win your original bet back plus the amount you won. 
-Doubling Down:
-If you choose to double down (place an additional bet after your first two cards) and win, the payout is still even money, but you're doubling your potential winnings. 
-Blackjack Payout:
-Traditionally, a Blackjack (Ace and a face card as your initial two cards) pays 3:2. This means if you bet $100, you win $150 (plus the $100 back). 
-Blackjack Payout Variation:
-Some casinos offer 6:5 payouts for Blackjack, meaning you win $12 for a $10 bet. 
-Insurance:
-If the dealer's face-up card is an Ace, you can bet on whether they have Blackjack. This bet pays 2:1 if the dealer does have Blackjack but loses otherwise, according to the Venetian Las Vegas. 
-Push:
-If you and the dealer have the same hand value, it's a push (tie), and your bet is returned to you. 
-
-EXTRA:
-Determine strategies, correct number of cards in deck changing, when player delt 8 and ace, player hits but says bust when the ace should go to 1 and keep playing 
-'''
-
 def setup(bankroll=100, deck=None):
     if deck is None:
         print("Setting up the game with a new deck of cards...\n")
@@ -524,18 +505,13 @@ if __name__ == "__main__":
     deck = None
     if strategy not in ['strat1', 'strat2', 'strat3']:
         while True:
-            try:
-                deck, balance = setup(bankroll=balance, deck=deck)
-                shuffled_deck = shuffle_deck(deck)
-                players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance)
-                dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
-                profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
-                save_results(dealers_hand, players_hand, split_hand, 'user', profit, balance, revenue, runs)
-                if balance <= 0:
-                    print("You have run out of money! Game over.")
-                    break
-
-            except Exception as e:
+            deck, balance = setup(bankroll=balance, deck=deck)
+            shuffled_deck = shuffle_deck(deck)
+            players_hand, split_hand, current_deck, dealer_hands, bet, bet2, balance, ifBusted = player_hand(shuffled_deck, balance, None)
+            dealers_hand, final_deck = dealer_hand(dealer_hands, current_deck, ifBusted)
+            profit, balance, revenue = compare_hands(dealers_hand, players_hand, split_hand, bet, bet2, balance)
+            save_results(dealers_hand, players_hand, split_hand, 'user', profit, balance, revenue, runs)
+            if balance <= 0:
                 print("You have run out of money! Game over.")
                 break
 
